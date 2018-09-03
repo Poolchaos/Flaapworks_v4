@@ -1,0 +1,21 @@
+{
+  "name": "flaapworks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pjvanderberg",
+  "license": "ISC",
+  "dependencies": {
+    "fl-logger": "^1.0.0",
+    "fl-pal": "^1.0.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^3.5.0",
+    "tslint": "^5.10.0",
+    "tslint-loader": "^3.6.0",
+    "typescript": "^2.8.3"
+  }
+}
