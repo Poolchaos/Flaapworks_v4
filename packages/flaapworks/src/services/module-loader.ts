@@ -25,10 +25,12 @@ export class ModuleLoader {
   // draggableService
 
   public static async initialise(): Promise<any> {
+    logger.info(' ::>> Module loader >> initialise >>>>> ');
     try {
       let container: HTMLElement = document.querySelector(`body[${Constants.FRAMEWORK.ENTRY}]`);
       logger.info(' ::>> container >>>>> ', container);
       let entry: string = container.getAttribute(`${Constants.FRAMEWORK.ENTRY}`);
+      logger.info(' ::>> entry >>>>> ', entry);
       await this.loadTemplate(entry, container);
       return true;
     } catch (e) {
@@ -37,11 +39,16 @@ export class ModuleLoader {
   }
 
   public static async loadTemplate(moduleName: string, container: HTMLElement): Promise<any> {
+    logger.info(' ::>> loadTemplate >>>>>> ', moduleName);
     try {
       let templateId: string = `${Constants.FRAMEWORK.TEMPLATE}${moduleName}`;
-      if(ModuleLoader.existingModuleRendered(moduleName, container, templateId)) return true;
+      logger.info(' ::>> templateId >>>>>> ', templateId);
+      if (ModuleLoader.existingModuleRendered(moduleName, container, templateId)) return true;
+      logger.debug(' ::>> no existing template | start loading module for ', moduleName, templateId);
       let template: HTMLElement = await RequestService.parseFetchedXml(moduleName, templateId);
+      logger.info(' ::>> template >>>>>> ', template);
       let viewModel: any = await ModuleLoader.fetchViewModel(moduleName, template);
+      logger.info(' ::>> viewModel >>>>>> ', viewModel);
       await ModuleLoader.renderTemplate(template, container);
       await ModuleLoader.renderModule(templateId, viewModel);
       return true;
@@ -51,7 +58,8 @@ export class ModuleLoader {
   }
 
   private static existingModuleRendered(moduleName: string, container: HTMLElement, templateId: string): any {
-    if(ModuleLoader.templates[templateId]) {
+    logger.info(' ::>> ModuleLoader.templates[templateId] >>>>>> ', ModuleLoader.templates[templateId]);
+    if (ModuleLoader.templates[templateId]) {
       ModuleLoader.rerenderModule(moduleName, templateId, container);
       return true;
     }
@@ -59,6 +67,7 @@ export class ModuleLoader {
   }
 
   private static async rerenderModule(moduleName:string, templateId: string, container: HTMLElement): Promise<any> {
+    logger.info(' ::>> rerenderModule >>>>>> ', moduleName, templateId);
     let template: HTMLElement = await RequestService.parseXmlString(moduleName, templateId, ModuleLoader.templates[templateId].template);
     await ModuleLoader.renderTemplate(template, container);
     await ModuleLoader.renderModule(templateId, ModuleLoader.templates[templateId].viewModel);
@@ -66,10 +75,11 @@ export class ModuleLoader {
   }
 
   private static fetchViewModel(moduleName: string, template: HTMLElement): void {
+    logger.info(' ::>> fetchViewModel >>>>>> ', moduleName);
     let ts = RequestService.fetch(moduleName).asTs();
     try {
       for(let _class in ts) {
-        if(ts.hasOwnProperty(_class) && typeof ts[_class] === 'function') {
+        if (ts.hasOwnProperty(_class) && typeof ts[_class] === 'function') {
           return ts[_class];
         }
       }
@@ -80,7 +90,7 @@ export class ModuleLoader {
 
   public static storeTemplate(templateId: string, template: string, viewModel: any): boolean {
     try {
-      if(ModuleLoader.templates[templateId]) {
+      if (ModuleLoader.templates[templateId]) {
         throw new Error(`Duplicate module '${templateId.replace(`${Constants.FRAMEWORK.TEMPLATE}`, '')}' detected`);
       }
       ModuleLoader.templates[templateId] = { template, viewModel };

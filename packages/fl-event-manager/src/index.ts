@@ -1,6 +1,5 @@
 // @ts-ignore
 import { v4 as uuidv4 } from 'uuid';
-// @ts-ignore
 import Logger from 'fl-logger';
 import { Constants } from './constants';
 
@@ -37,7 +36,7 @@ export class Eventing {
     };
     try {
       for(let subscriber in Eventing.handlers[event]) {
-        if(Eventing.handlers[event].hasOwnProperty(subscriber)) {
+        if (Eventing.handlers[event].hasOwnProperty(subscriber)) {
           Eventing.handlers[event][subscriber](payload);
         }
       }
@@ -49,7 +48,7 @@ export class Eventing {
   private static unsubscribe(eventName: string, subscriber: string): void {
     try {
       delete Eventing.handlers[eventName][subscriber];
-      if(Object.keys(Eventing.handlers[eventName]).length <= 0) {
+      if (Object.keys(Eventing.handlers[eventName]).length <= 0) {
         try {
           delete Eventing.handlers[eventName];
         } catch(e) {

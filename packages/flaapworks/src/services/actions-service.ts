@@ -13,7 +13,7 @@ export class ActionsService {
       let actionFound = false;
       for(let prop in viewModel) {
         let value = viewModel[prop];
-        if(!action && action !== '') {
+        if (!action && action !== '') {
           return;
         }
         switch(attr) {
@@ -41,7 +41,7 @@ export class ActionsService {
     el.setAttribute('draggable', 'true');
     let dragStartCallback = (event: Event) => {
       try {
-        // if(value && typeof value === 'function') value(event);
+        // if (value && typeof value === 'function') value(event);
         DraggableService.dragstartHandler(event);
       } catch(e) {
         logger.error(`Failed to call "DragStart"'s callback due to cause:`, e);
@@ -53,7 +53,7 @@ export class ActionsService {
   private static addDragOverCallback(el: HTMLElement, attr: string): void {
     let dragOverCallback = (event: Event) => {
       try {
-        // if(value && typeof value === 'function') value(event);
+        // if (value && typeof value === 'function') value(event);
         DraggableService.dragoverHandler(event);
       } catch(e) {
         logger.error(`Failed to call "DragOver"'s callback due to cause:`, e);
@@ -65,7 +65,7 @@ export class ActionsService {
   private static addDragDropCallback(el: HTMLElement, attr: string): void {
     let dragDropCallback = (event: Event) => {
       try {
-        // if(value && typeof value === 'function') value(event);
+        // if (value && typeof value === 'function') value(event);
         DraggableService.dropHandler(event);
       } catch(e) {
         logger.error(`Failed to call "DragDrop"'s callback due to cause:`, e);
@@ -79,7 +79,7 @@ export class ActionsService {
   }
 
   public static async tryAddCallbackEvent(eventType: string, action: string, prop: string, el: HTMLElement, value: any, attr: string): Promise<any> {
-    if(action.includes('(') && action.includes(')') && prop === action.replace('()', '')) {
+    if (action.includes('(') && action.includes(')') && prop === action.replace('()', '')) {
       el.addEventListener(eventType, (event: Event) => {
         try {
           value(event);

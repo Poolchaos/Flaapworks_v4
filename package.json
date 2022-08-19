@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
-    "build": "npx lerna run build ",
+    "build": "npm run build-packages && npm run build-test-app",
+    "build-packages": "npx lerna run build",
     "test": "npx lerna run test",
     "visualise": "npx nx graph",
     "publish": "npx lerna publish --no-private",
@@ -16,8 +17,14 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^7.0.7",
+    "clean-webpack-plugin": "^0.1.18",
+    "html-loader": "^4.1.0",
     "lerna": "^5.4.3",
-    "webpack": "^3.12.0"
+    "webpack": "^5.0.0"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2",
+    "webpack-cli": "^4.10.0"
   },
   "workspaces": [
     "packages/*"

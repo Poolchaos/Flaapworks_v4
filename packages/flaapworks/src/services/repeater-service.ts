@@ -10,14 +10,14 @@ export class RepeaterService {
   public static async templateRepeatableItems(viewModel: any): Promise<any> {
     let attr = Constants.FRAMEWORK.ATTRIBUTES.REPEAT;
     let el: HTMLElement = document.querySelector(`[${attr}]`);
-    if(!el) return true;
+    if (!el) return true;
     try {
       let action = el.getAttribute(`${attr}`);
       let matched = await ActionsService.matchActions(action, viewModel, el, attr);
       let value = el.getAttribute(attr);
       el.removeAttribute(attr);
       el.setAttribute(Constants.FRAMEWORK.ATTRIBUTES.REPEAT_TEMPLATE, value);
-      if(matched) {
+      if (matched) {
         await RepeaterService.templateRepeatableItems(viewModel);
         return RepeaterService.renderRepeatableItems();
       }

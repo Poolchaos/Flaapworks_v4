@@ -1,8 +1,10 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
   devtool: 'inline-source-map',
+  mode: 'production',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -12,10 +14,8 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ }
-    ],
-    loaders: [
-      { test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader', options: { /* Loader options go here */ } }
+      { test: /\.ts$/, enforce: 'pre', use: ['ts-loader', 'tslint-loader']},
+      { test: /\.(html)$/, use: ['html-loader'] }
     ]
   },
   resolve: {
@@ -25,5 +25,8 @@ module.exports = {
     aggregateTimeout: 300,
     poll: 1000,
     ignored: /node_modules/
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin(['dist'])   
+  ]
 };

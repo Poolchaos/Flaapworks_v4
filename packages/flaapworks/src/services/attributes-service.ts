@@ -23,7 +23,7 @@ export class AttributesService {
   private static async findCustomAttributes(attr: string, viewModel: any): Promise<any> {
     try {
       let el: any = document.querySelector(`[${attr}]`);
-      if(el) {
+      if (el) {
         let action = el.getAttribute(`${attr}`);
         el.removeAttribute(attr);
         await ActionsService.matchActions(action, viewModel, el, attr);

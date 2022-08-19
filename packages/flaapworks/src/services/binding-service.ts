@@ -25,9 +25,9 @@ export class BindingService {
 
   public static async attachViewModelToTemplate(templateId: string, templateHtml: any, viewModel: any): Promise<any> {
     let _viewModel;
-    if(typeof viewModel === 'object') {
+    if (typeof viewModel === 'object') {
       _viewModel = viewModel;
-    } else if(typeof viewModel === 'function') {
+    } else if (typeof viewModel === 'function') {
       _viewModel = await new viewModel();
       await ModuleLoader.storeTemplate(templateId, templateHtml, _viewModel);
     }

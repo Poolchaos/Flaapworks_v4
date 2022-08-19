@@ -14,6 +14,7 @@ export class RequestService {
         }
       },
       asTs: () => {
+        console.log(' ::>> fetch .>>>>> ', `html-loader!../${ModuleName}.ts`);
         try {
           return require(`../${ModuleName}.ts`);
         } catch (e) {
@@ -44,9 +45,13 @@ export class RequestService {
 
   public static async parseFetchedXml(moduleName: string, templateId: string): Promise<any> {
     try {
+      logger.debug(' ::>> parseFetchedXml ', moduleName, templateId);
       let htmlString: string = await RequestService.fetch(moduleName).asHtml();
+      logger.debug(' ::>> htmlString 1 ', htmlString);
       htmlString = await BindingService.identifyTemplateElements(htmlString);
+      logger.debug(' ::>> htmlString 2 ', htmlString);
       let doc: any = RequestService.parseHtmlString(htmlString);
+      logger.debug(' ::>> doc ', doc);
       let script = document.createElement('script');
       script.id = templateId;
       script.type = 'text/template';

@@ -17,19 +17,19 @@ class Logger {
   }
 
   public debug(...args: any[]): void {
-    if(Logger.isLogLevel.debug()) {
+    if (Logger.isLogLevel.debug()) {
       console.log(`%c${this.getDateString()}:Debug:${this.originator}:`, `color:${Logger.colors.default};`, ...args);
     }
   }
 
   public info(...args: any[]): void {
-    if(Logger.isLogLevel.info()) {
+    if (Logger.isLogLevel.info()) {
       console.log(`%c${this.getDateString()}:Info:${this.originator}:`, `color:${Logger.colors.blue};`, ...args);
     }
   }
 
   public error(...args: any[]): void {
-    if(Logger.isLogLevel.error()) {
+    if (Logger.isLogLevel.error()) {
       console.log(`%c${this.getDateString()}:Error:${this.originator}:`, `color:${Logger.colors.red};`, ...args);
     }
   }

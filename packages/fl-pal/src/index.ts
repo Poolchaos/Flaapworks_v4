@@ -10,6 +10,7 @@ export class DtlController {
   };
 
   public static async initialise(): Promise<any> {
+    logger.exclaim(' ::>> DtlController initialise called >>>>> ');
     let browser: IPlatform;
     try {
       browser = await DtlController.detectBrowser();

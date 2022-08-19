@@ -21,6 +21,7 @@ class Flaapworks {
   }
 
   public static async initialise(): Promise<any> {
+    logger.debug(' ::>> Flaapworks initialising...');
     try {
       await DtlController.initialise();
       await ModuleLoader.initialise();
