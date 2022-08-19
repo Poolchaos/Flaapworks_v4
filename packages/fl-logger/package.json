@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
-  "main": "dist/bundle.js",
+  "main": "src/index.ts",
   "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "pjvanderberg",
+  "author": "Phillip-Juan van der Berg <phillipjuanvanderberg@gmail.com> (@Flaapjan)",
   "license": "ISC",
   "devDependencies": {
     "ts-loader": "^3.5.0",

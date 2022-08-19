@@ -1,5 +1,5 @@
 {
-  "name": "flaapworks",
+  "name": "fl-event-manager",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -12,17 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "fl-logger": "^1.0.0",
-    "fl-pal": "^1.0.0",
-    "fl-event-manager": "^1.0.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/node": "^7.0.7",
     "ts-loader": "^3.5.0",
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
     "typescript": "^3.2"
-  },
-  "engines": {
-    "node": ">=14"
   }
 }

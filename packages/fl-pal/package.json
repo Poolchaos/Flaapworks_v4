@@ -8,7 +8,7 @@
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "pjvanderberg",
+  "author": "Phillip-Juan van der Berg <phillipjuanvanderberg@gmail.com> (@Flaapjan)",
   "license": "ISC",
   "dependencies": {
     "fl-logger": "^1.0.0"

@@ -9,11 +9,13 @@
     "build": "npx lerna run build ",
     "test": "npx lerna run test",
     "visualise": "npx nx graph",
-    "publish": "npx lerna publish --no-private"
+    "publish": "npx lerna publish --no-private",
+    "build-test-app": "webpack"
   },
   "author": "Phillip-Juan van der Berg <phillipjuanvanderberg@gmail.com> (@Flaapjan)",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^7.0.7",
     "lerna": "^5.4.3",
     "webpack": "^3.12.0"
   },
