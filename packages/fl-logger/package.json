@@ -1,9 +1,11 @@
 {
   "name": "fl-logger",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "pjvanderberg",
@@ -12,6 +14,6 @@
     "ts-loader": "^3.5.0",
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
-    "typescript": "^2.8.3"
+    "typescript": "^3.2"
   }
 }
